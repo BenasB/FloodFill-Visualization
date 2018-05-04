@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using System;
 
-interface IClickable
+public interface IClickable<T>
 {
-	void Click(Color color);
+	void Click(Action<T> action);
 }
