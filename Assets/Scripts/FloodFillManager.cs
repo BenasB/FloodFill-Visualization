@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Placement))]
 public class FloodFillManager : MonoBehaviour 
@@ -14,6 +15,7 @@ public class FloodFillManager : MonoBehaviour
 	[SerializeField] Transform generationGroup;
 	[SerializeField] Transform placementGroup;
 	[SerializeField] Transform customizationGroup;
+	[SerializeField] Transform runtimeGroup;
 
 	public int Length { get; private set; }
 	public int Width { get; private set; }
@@ -90,6 +92,7 @@ public class FloodFillManager : MonoBehaviour
 	public void StartFloodFillQueue()
 	{
 		customizationGroup.gameObject.SetActive(false);
+		runtimeGroup.gameObject.SetActive(true);
 		State = StateTypes.Runtime;
 
 		StartCoroutine(FloodFill.FloodFillQueue(graph, placement.StartNode, Color.white, Color.red, delay));
@@ -99,6 +102,7 @@ public class FloodFillManager : MonoBehaviour
 	public void StartFloodFillStack()
 	{
 		customizationGroup.gameObject.SetActive(false);
+		runtimeGroup.gameObject.SetActive(true);
 		State = StateTypes.Runtime;
 
 		StartCoroutine(FloodFill.FloodFillStack(graph, placement.StartNode, Color.white, Color.red, delay));
@@ -108,5 +112,11 @@ public class FloodFillManager : MonoBehaviour
 	public void SetDelay(Slider slider)
 	{
 		delay = slider.value;
+	}
+
+	// Called by a button
+	public void ReloadScene()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
