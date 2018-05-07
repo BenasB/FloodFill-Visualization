@@ -2,7 +2,7 @@
 
 Visualizes the Flood Fill algorithm.
 
-[Try it](https://benasb.github.io/FloodFill-Visualization/Builds/FloodFill%20Visualization%201.0/index.html)
+[Try it](https://benasb.github.io/FloodFill-Visualization/index.html)
 
 * Specify length and width of the graph
 * Place obstacles and one start node (Right click to reset the node)
